@@ -4,7 +4,7 @@ public class CheckBalanceResult {
 	
 	private String cardNumber;
 	
-	private int cardBalance1;
+	private double cardBalance1;
 
 	public String getCardNumber() {
 		return cardNumber;
@@ -14,11 +14,11 @@ public class CheckBalanceResult {
 		this.cardNumber = cardNumber;
 	}
 
-	public int getCardBalance1() {
+	public double getCardBalance1() {
 		return cardBalance1;
 	}
 
-	public void setCardBalance1(int cardBalance1) {
+	public void setCardBalance1(double cardBalance1) {
 		this.cardBalance1 = cardBalance1;
 	}
 

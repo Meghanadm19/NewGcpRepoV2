@@ -21,32 +21,18 @@ public class PaymentTransactionDAOImp implements PaymentTransactionDAO {
 	@PersistenceContext
 	private EntityManager entitymaneger;
 	@Override
-	/*public Card getCardBalance(int cardno) {
-		
-		return entitymaneger.find(Card.class, cardno);
-		
-	}*/
-	
 	public CheckBalanceResult getCardBalance(String cardno) {
 		
-		String issuer = cardno.substring(0, 6);
+		StringBuffer issuer = new StringBuffer(cardno.substring(0, 6));
 		int cardTypeDigit = Integer.parseInt(cardno.substring(6, 7));
-		String accountNumber = cardno.substring(7, 18);
+		StringBuffer accountNumber = new StringBuffer(cardno.substring(7, 18));
 		int digitCheck = Integer.parseInt(cardno.substring(18, 19));
 
-		/*Query query = entitymaneger.createQuery("Select c from CardNumber c where c.issuer=" + issuer + " and c.cardTypeDigit="
-				+ cardTypeDigit + " and c.accountNumber=" + accountNumber + " and c.checkDigit=" + digitCheck);
-*/
-		Query query = entitymaneger.createQuery("FROM CardNumber");
+		Query query = entitymaneger.createQuery("Select a.currentAmount from CardNumber c, Card p, Amount a where c.cardNumberId = p.cardNumberId and p.cardId = a.cardId and c.issuer = '" + issuer + "' and c.cardTypeDigit = "
+				+ cardTypeDigit + " and c.accountNumber = '" + accountNumber + "' and c.checkDigit = " + digitCheck);
+
+		Double balance = (Double) query.getSingleResult();
 		
-		@SuppressWarnings("unchecked")
-		List<CardNumber> list = query.getResultList();
-		int cardNumberId = list.get(0).getCardNumberId();
-		Card card = entitymaneger.find(Card.class, cardNumberId);
-		int cardId = card.getCardId();
-		Amount amount = entitymaneger.find(Amount.class, cardId);
-		int balance = amount.getCurrentAmount();
-		//System.out.println("Balance"+balance);
 		CheckBalanceResult result = new CheckBalanceResult();
 		result.setCardNumber(cardno);
 		result.setCardBalance1(balance);

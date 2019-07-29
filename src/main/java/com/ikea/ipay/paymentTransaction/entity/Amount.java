@@ -22,7 +22,7 @@ public class Amount implements Serializable {
 	private String amountType;
 	
 	@Column(name = "CURRENT_AMOUNT")
-	private int currentAmount;
+	private double currentAmount;
 	
 	@Column(name = "PRIORITY")
 	private int priority;
@@ -34,7 +34,7 @@ public class Amount implements Serializable {
 	private int massLoadId;
 	
 	@Column(name = "ORIGINAL_AMOUNT")
-	private int originalAmount;
+	private double originalAmount;
 	
 	@Column(name = "BU_TYPE")
 	private String buType;
@@ -90,11 +90,11 @@ public class Amount implements Serializable {
 		this.amountType = amountType;
 	}
 
-	public int getCurrentAmount() {
+	public double getCurrentAmount() {
 		return currentAmount;
 	}
 
-	public void setCurrentAmount(int currentAmount) {
+	public void setCurrentAmount(double currentAmount) {
 		this.currentAmount = currentAmount;
 	}
 
@@ -122,11 +122,11 @@ public class Amount implements Serializable {
 		this.massLoadId = massLoadId;
 	}
 
-	public int getOriginalAmount() {
+	public double getOriginalAmount() {
 		return originalAmount;
 	}
 
-	public void setOriginalAmount(int originalAmount) {
+	public void setOriginalAmount(double originalAmount) {
 		this.originalAmount = originalAmount;
 	}
 
